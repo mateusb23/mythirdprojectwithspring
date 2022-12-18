@@ -1,6 +1,7 @@
 package com.mateusbispo.mythirdproject.resources;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,8 +34,17 @@ public class CategoryResource {
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Category> findById(@PathVariable Long id) {
-		Category cat = categoryRepository.findById(id);
-		return ResponseEntity.ok().body(cat);
+		Category cat = categoryRepository.findById(id).get();		// IMPORTANTE OBSERVAR QUE O MÉTODO findById() DA INTERFACE JpaRepository [DO SPRING DATA JPA] RETORNA UM Optional QUE PODE OU NÃO TER UM OBJETO DENTRO DELE.
+		return ResponseEntity.ok().body(cat);						// COM ISSO, POR ELE RETORNAR UM Optional, PRECISAMOS ADICIONAR UM .get() NA LINHA 37 PARA OBTER O OBJETO QUE ESTÁ DENTRO DO Optional.
 	}
+	
+	/* 
+	 *	TAMBÉM PODERÍAMOS TER FEITO DESSA FORMA QUE ESTÁ LOGO ABAIXO:
+	 * 
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<Optional<Category>> findById(@PathVariable Long id) {
+		Optional<Category> cat = categoryRepository.findById(id);
+		return ResponseEntity.ok().body(cat);
+	} */
 	
 }

@@ -1,6 +1,7 @@
 package com.mateusbispo.mythirdproject.resources;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +28,13 @@ public class ProductResource {
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Product> findById(@PathVariable Long id) {
-		Product pro = productRepository.findById(id);
+		Product pro = productRepository.findById(id).get();
 		return ResponseEntity.ok().body(pro);
+	
+	/* @GetMapping(value = "/{id}")
+	public ResponseEntity<Optional<Product>> findById(@PathVariable Long id) {
+		Optional<Product> pro = productRepository.findById(id);
+		return ResponseEntity.ok().body(pro); */
 	}
 	
 }

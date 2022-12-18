@@ -1,29 +1,11 @@
 package com.mateusbispo.mythirdproject.repositories;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.stereotype.Component;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.mateusbispo.mythirdproject.entities.Category;
 
-@Component
-public class CategoryRepository {
-
-	private Map<Long, Category> map = new HashMap<>();
-	
-	public void save(Category obj) {
-		map.put(obj.getId(), obj);
-	}
-	
-	public Category findById(Long id) {
-		return map.get(id);
-	}
-	
-	public List<Category> findAll() {
-		return new ArrayList<Category>(map.values());
-	}
-	
+@Repository
+public interface CategoryRepository extends JpaRepository<Category, Long> { // O JpaRepository É UM GENERIC, COM ISSO, TEMOS QUE DIZER O TIPO DA ENTIDADE E O TIPO DO ID DELA.
+	// VALE SALIENTAR QUE O JpaRepository É UMA INTERFACE QUE POSSUI IMPLEMENTAÇÕES(FUNÇÕES/MÉTODOS) PADRÃO DENTRO DELA, COMO MÉTODOS PARA SALVAR(save()), BUSCAR TODOS(findAll()), BUSCAR POR ID(findById()) ETC. 
 }

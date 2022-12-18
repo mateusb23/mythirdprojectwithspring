@@ -28,16 +28,19 @@ public class MythirdprojectApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Category cat1 = new Category(1L, "Electronics");
-		Category cat2 = new Category(2L, "Books");
+		Category cat1 = new Category(null, "Electronics");
+		Category cat2 = new Category(null, "Books");
 
-		Product p1 = new Product(1L, "TV", 2200.00, cat1);
-		Product p2 = new Product(2L, "Domain Driven Design", 120.00, cat2);
-		Product p3 = new Product(3L, "PS5", 2800.00, cat1);
-		Product p4 = new Product(4L, "Docker", 100.00, cat2);
+		Product p1 = new Product(null, "Notebook Acer", 2200.00, cat1);
+		Product p2 = new Product(null, "Clean Code", 120.00, cat2);
+		Product p3 = new Product(null, "Playstation 5", 5500.00, cat1);
+		Product p4 = new Product(null, "Docker and Kubernetes", 100.00, cat2);
+		Product p5 = new Product(null, "Xbox Series X", 5999.90, cat1);
+		Product p6 = new Product(null, "RTX-3080", 3000.00, cat1);
+		Product p7 = new Product(null, "Geometria Analítica", 389.90, cat2);
 
-		cat1.getProducts().addAll(Arrays.asList(p1, p3)); // MÉTODO addAll() ADICIONA VÁRIOS ELEMENTOS AO MESMO TEMPO
-		cat2.getProducts().addAll(Arrays.asList(p2, p4));
+		cat1.getProducts().addAll(Arrays.asList(p1, p3, p5, p6)); // MÉTODO addAll() ADICIONA VÁRIOS ELEMENTOS AO MESMO TEMPO
+		cat2.getProducts().addAll(Arrays.asList(p2, p4, p7));
 		
 		categoryRepository.save(cat1);
 		categoryRepository.save(cat2);
@@ -46,6 +49,9 @@ public class MythirdprojectApplication implements CommandLineRunner {
 		productRepository.save(p2);
 		productRepository.save(p3);
 		productRepository.save(p4);
+		productRepository.save(p5);
+		productRepository.save(p6);
+		productRepository.save(p7);
 		
 	}
 
