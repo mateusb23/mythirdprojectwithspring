@@ -3,14 +3,32 @@ package com.mateusbispo.mythirdproject.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "TB_PRODUCT")
 public class Product implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "PRODUCT_ID")
 	private Long id;
+	@Column(name = "NAME")
 	private String name;
+	@Column(name = "PRICE")
 	private Double price;
 	
+	@ManyToOne				// VISTO QUE TEMOS MUITOS PRODUCTOS(Product) PARA UMA CATEGORIA(Category).
+	@JoinColumn(name = "CATEGORY_ID")		// CORRESPONDE À CHAVE ESTRANGEIRA NA TABELA PRODUCT QUE SERÁ CRIADA NO BANCO DE DADOS H2
 	private Category category;
 	
 	public Product() { }
