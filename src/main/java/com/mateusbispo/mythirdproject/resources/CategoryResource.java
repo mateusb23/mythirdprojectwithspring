@@ -16,7 +16,7 @@ import com.mateusbispo.mythirdproject.repositories.CategoryRepository;
 @RequestMapping(value = "/categories")
 public class CategoryResource {
 	
-	@Autowired				// ESTA ANOTAÇÃO FAZ UM PRÉ-PROCESSAMENTO POR BAIXO DOS PANOS, JÁ RESOLVENDO A DEPENDÊNCIA DE FORMA "AUTOMÁTICA" NESTA CLASSE AQUI. ELA SÓ FUNCIONOU PORQUE COLOCAMOS A ANOTAÇÃO @Component NA CLASSE CategoryRepository
+	@Autowired				// ESTA ANOTAÇÃO FAZ UM PRÉ-PROCESSAMENTO POR BAIXO DOS PANOS, JÁ RESOLVENDO A DEPENDÊNCIA DE FORMA "AUTOMÁTICA" NESTA CLASSE AQUI. ELA SÓ FUNCIONOU PORQUE COLOCAMOS A ANOTAÇÃO @Repository/@Component NA CLASSE CategoryRepository
 	private CategoryRepository categoryRepository;				
 	
  /* private final CategoryRepository categoryRepository;
